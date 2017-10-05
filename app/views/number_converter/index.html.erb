@@ -24,16 +24,18 @@
     <%= f.text_field :base, value: @number_conversion.base %>
   </div>
 
-  <%= f.button 'Convert' %>
+  <%= f.button 'Convert', class: 'btn btn-primary' %>
 <% end %>
 
 <h2>History</h2>
-<ul>
-<% @past_conversions.each do |conversion| %>
-  <li>
-    <%= conversion.number %><sub>10</sub>
-    =
-    <%= conversion.result %><sub><%= conversion.base %></sub>
-  </li>
+<div>
+<% @past_conversions.each_with_index do |conversion, index| %>
+  <div class="card <%= index.odd? ? 'bg-dark text-light' : 'bg-warning' %>">
+    <div class="card-body">
+      <%= conversion.number %><sub>10</sub>
+      =
+      <%= conversion.result %><sub><%= conversion.base %></sub>
+    </div>
+  </div>
 <% end %>
-</ul>
+</div>
