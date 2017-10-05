@@ -2,7 +2,7 @@ class NumberConverterController < ApplicationController
   def index
     safe_params = params.permit(:number, :base)
     @number_conversion = NumberConversion.new(safe_params)
-    @number_conversion.save
+    @number_conversion.save if request.post?
 
     @past_conversions = NumberConversion.all.order(created_at: :desc)
   end

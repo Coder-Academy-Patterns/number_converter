@@ -4,13 +4,15 @@
   <%= pluralize(@past_conversions.count, 'conversion') %>
 </p>
 
-<% if @number_conversion.valid? %>
+<% if @number_conversion.errors.any? %>
+  <% @number_conversion.errors.full_messages.each do |message| %>
+    <p class="alert alert-danger"><%= message %></p>
+  <% end %>
+<% elsif @number_conversion.valid? %>
   <p>In base <%= @number_conversion.base %>:
   <%= @number_conversion.result %></p>
 <% else %>
-  <% @number_conversion.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-  <% end %>
+  
 <% end %>
 
 <%= form_with(local: true) do |f| %>
