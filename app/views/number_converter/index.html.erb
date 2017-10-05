@@ -11,8 +11,6 @@
 <% elsif @number_conversion.valid? %>
   <p>In base <%= @number_conversion.base %>:
   <%= @number_conversion.result %></p>
-<% else %>
-  
 <% end %>
 
 <%= form_with(local: true) do |f| %>
